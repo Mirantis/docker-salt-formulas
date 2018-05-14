@@ -13,10 +13,10 @@ matrix:
     - stable
     - stable 2017.7
     - stable 2018.3
-    - develop
   salt-formulas:
     - master
-    # tag: stable-2018.3
+    # tag: 2017.4.1
+    # tag: 2018.4.1
 
 # NOTE, make sure target names don't conflict with DockerMake target names
 target:
@@ -27,17 +27,6 @@ target:
       - salt
     require:
       - salt
-  # Upstream salt with pre installed formulas and wheelhouse
-  # https://github.com/epcim/wheelhouse
-  #wheelhouse:
-  #  matrix:
-  #    - dist
-  #    - salt-formulas
-  #    - salt
-  #  require:
-  #    - salt-formulas
-  #    - salt
-  #    - wheel
   # Pure salt-master with tini/salt-master entrypoint.
   # (no formulas, so use volumes to mount env/formulas/pillars)
   saltmaster:
@@ -48,24 +37,16 @@ target:
       - salt
       - tini-saltmaster
   # Ready to use salt-master with pre installed reclass and github.com/salt-formulas
-  saltmaster-reclass:
-    matrix:
-      - dist
-      - salt-formulas
-      - salt
-    require:
-      - reclass
-  # Ready to use salt-master with github.com/salt-formulas
-  #saltmaster-saltclass:
+  #saltmaster-reclass:
   #  matrix:
   #    - dist
   #    - salt-formulas
   #    - salt
   #  require:
-  #    - saltclass
+  #    - reclass
 
 dockermake:
   destination: 'images'
-  repository:  'docker.io/epcim/salt'
+  repository:  'docker.io/Mirantis/salt'
+  options: '--registry-user mirantismcpjenkins'
   # options: '--no-cache'
-  # options: '--registry-user epcim'
