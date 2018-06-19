@@ -12,7 +12,7 @@ matrix:
   salt:
     - stable
     - stable 2017.7
-    - stable 2018.3
+    - stable 2016.3
   salt-formulas:
     - master
     # tag: 2017.4.1
